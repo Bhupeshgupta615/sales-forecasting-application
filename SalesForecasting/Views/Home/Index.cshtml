@@ -1,0 +1,52 @@
+﻿@model List<HomeSalesModel>
+@using SalesForecasting.Repository
+@{
+    ViewData["Title"] = "Home Page";
+    var state = (List<HomeViewModel>)ViewBag.States;
+    var years = (List<HomeYearModel>)ViewBag.Years;
+}
+
+<h1>Select Year & State</h1>
+<form method="Post" asp-action="yeargetsale" enctype="multipart/form-data">
+    <select name="state" id="state">
+        @foreach (var item in state)
+		{
+            <option value="@item.States">@item.States</option>
+		}
+        
+	</select>
+   
+    <select name="year" id="year">
+        @foreach (var item in years)
+        {
+            <option value="@item.Year">@item.Year</option>
+        }
+
+    </select>
+		<button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">State</th>
+            <th scope="col">Total Sales</th>
+         
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.state</td>
+                <td>@item.Total</td>
+
+            </tr>
+            
+        }
+       
+    </tbody>
+</table>
+
